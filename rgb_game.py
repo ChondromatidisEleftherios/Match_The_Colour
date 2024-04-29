@@ -6,6 +6,7 @@ def upd(c):
 
 
 if __name__ == '__main__':
+	
 	root = tk.Tk() 
 	root.resizable(False,False) # Για να μη μπορει να παει fullscreen
 	root.geometry("900x600") # Mέγεθος παραθύρου
