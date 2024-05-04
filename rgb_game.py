@@ -1,6 +1,7 @@
 import tkinter as tk
 import random as rdm 
 import utils as u
+from tkinter import messagebox
 
 prev_distance = 100.00 # Global μεταβλητη για αρχικοποιηση της απόστασης
 attempt = 1 # Μετρητής προσπαθειών
@@ -70,18 +71,24 @@ def di():
 			att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
 			att.grid(row=0, column=2, sticky = tk.NSEW)
 		elif attempt == 6:
+			if distance > prev_distance:
+				score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(prev_distance) + "% away from the colour")
+				score.grid(row=0, column=2, sticky = tk.NSEW)
+			elif distance <= prev_distance:
+				score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(distance) + "% away from the colour")
+				score.grid(row=0, column=2, sticky = tk.NSEW)
 			att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= " Attempt 5 ")
 			att.grid(row=0, column=2, sticky = tk.NSEW)
-		if (distance >=10.0) and attempt == 6: # Αν δε τα καταφερει
+		if distance >=10.0 and attempt == 6: # Αν δε τα καταφερει
 			tk.messagebox.showinfo(" ", "YOU LOSE !")
 			rst = True
-		if (distance <= 10.0) and attempt == 2: # Αν τα καταφέρει με τη πρώτη
+		if distance <= 10.0 and attempt == 2: # Αν τα καταφέρει με τη πρώτη
 			tk.messagebox.showinfo(" ", "YOU'RE SKILLED ;D")
 			rst = True
-		elif (distance <= 10.0) and (attempt < 5 and attempt >= 3):
+		elif distance <= 10.0 and (attempt <= 5 and attempt >= 3):
 			tk.messagebox.showinfo(" ", "NOT BAD !")
 			rst = True
-		elif (distance <= 10.0) and attempt == 6: # Αν τα καταφέρει με τη τελευταία
+		elif distance <= 10.0 and attempt == 6: # Αν τα καταφέρει με τη τελευταία
 			tk.messagebox.showinfo(" ", "YOU WIN !")
 			rst = True
 	elif rst == True:
