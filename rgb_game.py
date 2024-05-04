@@ -122,6 +122,3 @@ if __name__ == '__main__':
 	at_frame = tk.Frame(root, bg="darkorchid4", width=420, height=20)
 	at_frame.grid(row=10, column=2, padx=0, pady=0)
 	root.mainloop() # Τρέχει όλα τα παραπάνω μέχρι να κλείσουμε το παράθυρο
-	t2_frame = tk.Frame(root, bg="darkorchid4", width=420, height=20)
-	t2_frame.grid(row=20, column=2, padx=0, pady=0)
-	root.mainloop() # Τρέχει όλα τα παραπάνω μέχρι να κλείσουμε το παράθυρο
