@@ -40,7 +40,6 @@ def random_col():
 		att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
 		att.grid(row=0, column=2, sticky = tk.NSEW)
 	if rst==True:
-		attempt = 1
 		att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
 		att.grid(row=0, column=2, sticky = tk.NSEW)
 		pl_frame.config(bg= "black")
