@@ -1,11 +1,13 @@
-import tkinter as tk
 import random as rdm 
 import utils as u
+import tkinter as tk
 from tkinter import messagebox
+from tkinter import font as tkf
 
 prev_distance = 100.00 # Global μεταβλητη για αρχικοποιηση της απόστασης
 attempt = 1 # Μετρητής προσπαθειών
 rst = False
+auto_va = True # Χρησιμοποιείται για το πρώτο generation το οποίο είναι αυτόματο
 
 
 def upd(c):
@@ -37,16 +39,16 @@ def random_col():
 	ai_code = '#%02x%02x%02x' % (r, g, b) # Mετατροπή των χρωμάτων σε 16δικο αριθμό
 	ai_frame.config (bg= ai_code)
 	if rst == False:
-		att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
+		att = tk.Label(at_frame, height=1, width= 10, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt), font= ('Cambria', 24, 'bold'))
 		att.grid(row=0, column=2, sticky = tk.NSEW)
 	if rst==True:
-		att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
+		att = tk.Label(at_frame, height=1, width= 10, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt), font= ('Cambria', 24, 'bold'))
 		att.grid(row=0, column=2, sticky = tk.NSEW)
 		pl_frame.config(bg= "black")
 		pl_col = tk.Label(t_frame, height=1, width=15, fg='white', bg= 'darkorchid4', text = " ")
 		pl_col.grid(row = 0, column = 0, sticky = tk.NSEW)
 		prev_distance = 100.00
-		score = tk.Label(t2_frame, height=1, width= 30, bg='darkorchid4', text= " ")
+		score = tk.Label(t2_frame, height=1, width= 10, bg='darkorchid4', text= " ")
 		score.grid(row=0, column=2, sticky = tk.NSEW)
 		rst = False
 
@@ -60,23 +62,23 @@ def di():
 	if rst == False:
 		if distance <= prev_distance and attempt < 6:
 			prev_distance = distance
-			score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(distance) + "% away from the colour")
+			score = tk.Label(t2_frame, height=1, width= 44, fg='white', bg='darkorchid4', text= "Best Score= " + str(distance) + "% away from the colour", font= ('Verdana', '12'))
 			score.grid(row=0, column=2, sticky = tk.NSEW)
-			att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
+			att = tk.Label(at_frame, height=1, width= 10, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt), font= ('Cambria', 24, 'bold'))
 			att.grid(row=0, column=2, sticky = tk.NSEW)
 		elif distance > prev_distance and attempt < 6 :
-			score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(prev_distance) + "% away from the colour")
+			score = tk.Label(t2_frame, height=1, width= 44, fg='white', bg='darkorchid4', text= "Best Score= " + str(prev_distance) + "% away from the colour", font= ('Verdana', '12'))
 			score.grid(row=0, column=2, sticky = tk.NSEW)
-			att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt))
+			att = tk.Label(at_frame, height=1, width= 10, fg='red', bg='darkorchid4', text= "Attempt " + str(attempt), font= ('Cambria', 24, 'bold'))
 			att.grid(row=0, column=2, sticky = tk.NSEW)
 		elif attempt == 6:
 			if distance > prev_distance:
-				score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(prev_distance) + "% away from the colour")
+				score = tk.Label(t2_frame, height=1, width= 44, fg='white', bg='darkorchid4', text= "Best Score= " + str(prev_distance) + "% away from the colour", font= ('Verdana', '12'))
 				score.grid(row=0, column=2, sticky = tk.NSEW)
 			elif distance <= prev_distance:
-				score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= "Best Score= " + str(distance) + "% away from the colour")
+				score = tk.Label(t2_frame, height=1, width= 44, fg='white', bg='darkorchid4', text= "Best Score= " + str(distance) + "% away from the colour", font= ('Verdana', '12'))
 				score.grid(row=0, column=2, sticky = tk.NSEW)
-			att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= " Attempt 5 ")
+			att = tk.Label(at_frame, height=1, width= 10, fg='red', bg='darkorchid4', text= " Attempt 5 ", font= ('Cambria', 24, 'bold'))
 			att.grid(row=0, column=2, sticky = tk.NSEW)
 		if distance >=10.0 and attempt == 6: # Αν δε τα καταφερει
 			tk.messagebox.showinfo(" ", "YOU LOSE !")
@@ -88,16 +90,16 @@ def di():
 			tk.messagebox.showinfo(" ", "NOT BAD !")
 			rst = True
 		elif distance <= 10.0 and attempt == 6: # Αν τα καταφέρει με τη τελευταία
-			tk.messagebox.showinfo(" ", "YOU WIN !")
+			tk.messagebox.showinfo(" ", "YOU WIN!")
 			rst = True
 	elif rst == True:
 		distance = 100.00
-		prev_distance = 100.0
-		att = tk.Label(at_frame, height=1, width= 30, fg='red', bg='darkorchid4', text= " No more Attempts ")
+		prev_distance = 100.00
+		att = tk.Label(at_frame, height=1, width= 15, fg='red', bg='darkorchid4', text= " No more Attempts ", font= ('Cambria', 24, 'bold'))
 		att.grid(row=0, column=2, sticky = tk.NSEW)
 		score = tk.Label(t2_frame, height=1, width= 30, fg='white', bg='darkorchid4', text= " ")
 		score.grid(row=0, column=2, sticky = tk.NSEW)
-		tk.messagebox.showinfo(" ", "PRESS GENERATE TO PLAY AGAIN !")
+		tk.messagebox.showinfo(" ", "PRESS 'GENERATE' TO PLAY AGAIN!")
 
 
 if __name__ == '__main__':
@@ -127,4 +129,7 @@ if __name__ == '__main__':
 	t2_frame.grid(row=20, column=2, padx=0, pady=0)
 	at_frame = tk.Frame(root, bg="darkorchid4", width=420, height=20)
 	at_frame.grid(row=10, column=2, padx=0, pady=0)
+	if auto_va == True: # Κλήση της συνάρτησης ώστε να γίνει αυτόματα generated το πρώτο χρώμα
+		random_col()
+		auto_va = False
 	root.mainloop() # Τρέχει όλα τα παραπάνω μέχρι να κλείσουμε το παράθυρο
